@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.selonj'
+version '1.0'
+
+def jvmTarget = 1.8
+sourceCompatibility = jvmTarget
+targetCompatibility = jvmTarget
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.hamcrest:hamcrest-library:2.1'
+}
