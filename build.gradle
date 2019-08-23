@@ -1,20 +1,32 @@
 plugins {
     id 'java'
+    id 'idea'
 }
 
 group 'com.selonj'
 version '1.0'
 
 def jvmTarget = 1.8
+ext {
+    springVersion = '5.1.7.RELEASE'
+}
 sourceCompatibility = jvmTarget
 targetCompatibility = jvmTarget
 
 repositories {
-    mavenLocal()
-    mavenCentral()
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
 }
 
 dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-library:2.1'
+    testCompile "org.springframework:spring-context-support:$springVersion"
+    testCompile "org.springframework:spring-test:$springVersion"
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
 }
