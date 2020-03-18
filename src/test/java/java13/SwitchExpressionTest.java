@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 /**
  * @author i-katas
@@ -12,13 +11,24 @@ import static org.junit.Assert.fail;
  */
 public class SwitchExpressionTest {
     @Test
-    public void yieldStatement() {
-        int code = 1;
+    public void labeledStatements() {
+        String code = "foo";
 
         String result = switch (code) {
-            case 0 -> "foo";
-            case 1 -> {
-              yield "bar";
+            case "foo" -> "bar";
+            default -> throw new IllegalArgumentException("Invalid code: " + code);
+        };
+
+        assertThat(result, equalTo("bar"));
+    }
+
+    @Test
+    public void yieldStatements() {
+        String code = "foo";
+
+        String result = switch (code) {
+            case "foo" -> {
+                yield "bar";
             }
             default -> throw new IllegalArgumentException("Invalid code: " + code);
         };

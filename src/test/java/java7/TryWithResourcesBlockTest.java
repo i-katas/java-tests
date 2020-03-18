@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static org.hamcrest.Matchers.hasItemInArray;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -29,19 +28,18 @@ public class TryWithResourcesBlockTest {
     @Test
     public void accumulateSuppressedExceptions() throws IOException {
         IOException readError = new IOException("EOF");
-        IOException readCloseError = new IOException("close failed");
-        IOException writerCloseError = new IOException("close failed");
+        IOException readerCloseError = new IOException("close reader failed");
+        IOException writerCloseError = new IOException("close writer failed");
 
         doThrow(readError).when(in).read();
-        doThrow(readCloseError).when(in).close();
+        doThrow(readerCloseError).when(in).close();
         doThrow(writerCloseError).when(out).close();
 
         try (InputStream reader = in; OutputStream writer = out) {
             writer.write(reader.read());
         } catch (IOException expected) {
             assertThat(expected, is(readError));
-            assertThat(expected.getSuppressed(), hasItemInArray(is(readCloseError)));
-            assertThat(expected.getSuppressed(), hasItemInArray(is(writerCloseError)));
+            assertThat(expected.getSuppressed(), arrayContaining(writerCloseError, readerCloseError));
         }
     }
 }
