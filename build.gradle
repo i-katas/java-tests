@@ -9,7 +9,6 @@ version '1.0'
 def jvmTarget = 13
 ext {
     springVersion = '5.1.7.RELEASE'
-    luceneVersion = "8.0.0"
 }
 
 sourceCompatibility = jvmTarget
@@ -25,10 +24,14 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.27.0'
     testCompile "org.springframework:spring-context-support:$springVersion"
     testCompile "org.springframework:spring-test:$springVersion"
+}
 
-    testCompile "org.apache.lucene:lucene-analyzers-common:$luceneVersion"
-    testCompile "org.apache.lucene:lucene-analyzers-smartcn:$luceneVersion"
-    testCompile "org.apache.lucene:lucene-analyzers-icu:$luceneVersion"
+tasks.withType(JavaCompile).each {
+    it.options.compilerArgs.add('--enable-preview')
+}
+
+test {
+    jvmArgs(['--enable-preview'])
 }
 
 idea {
