@@ -3,7 +3,7 @@ plugins {
     id 'idea'
 }
 
-group 'com.selonj'
+group 'com.ikatas'
 version '1.0'
 
 def jvmTarget = 13
