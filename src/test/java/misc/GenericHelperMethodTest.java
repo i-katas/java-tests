@@ -1,4 +1,4 @@
-package javax.lang;
+package misc;
 
 import org.junit.Test;
 
@@ -25,8 +25,9 @@ public class GenericHelperMethodTest {
 
     /**
      * The wildcard capture error raised by compiler if inline {@link GenericHelperMethodTest#rotateHelper} method.
-     * @see <a href="Wildcard Capture and Helper Methods">https://docs.oracle.com/javase/tutorial/java/generics/capture.html</a>
+     *
      * @param point
+     * @see <a href="Wildcard Capture and Helper Methods">https://docs.oracle.com/javase/tutorial/java/generics/capture.html</a>
      */
     private void rotate(Point<?> point) {
         rotateHelper(point);

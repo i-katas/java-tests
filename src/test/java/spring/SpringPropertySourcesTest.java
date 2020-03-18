@@ -1,4 +1,4 @@
-package org.springframework.context.config;
+package spring;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;

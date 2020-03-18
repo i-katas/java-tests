@@ -1,4 +1,4 @@
-package javax.util;
+package misc;
 
 import org.junit.Test;
 

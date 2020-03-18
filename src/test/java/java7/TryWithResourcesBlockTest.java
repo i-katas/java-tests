@@ -1,4 +1,4 @@
-package javax.lang;
+package java7;
 
 import org.junit.Test;
 
@@ -21,7 +21,6 @@ public class TryWithResourcesBlockTest {
     private final OutputStream out = mock(OutputStream.class);
 
     /**
-     *
      * An exception is thrown from the {@code try} block and one or more exceptions are thrown from the {@code try-with-resources} statement, then those exceptions thrown from the {@code try-with-resources} statement are suppressed.
      *
      * @see Throwable#addSuppressed(Throwable)

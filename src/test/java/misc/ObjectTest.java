@@ -1,4 +1,4 @@
-package javax.lang;
+package misc;
 
 import org.junit.Test;
 
@@ -20,7 +20,6 @@ public class ObjectTest {
      * @see Object#getClass()
      * @see <a href="https://stackoverflow.com/questions/19332856/what-is-meant-by-the-erasure-of-the-static-type-of-the-expression-on-which-it-i">the erasure of the static type of the expression</a>
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.6">Type Erasure</a>
-     *
      */
     @Test
     public void eraseStaticTypeExpressionForClass() {
