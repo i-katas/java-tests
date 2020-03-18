@@ -12,12 +12,14 @@ import static org.junit.Assert.fail;
  */
 public class SwitchExpressionTest {
     @Test
-    public void assignment() {
+    public void yieldStatement() {
         int code = 1;
 
         String result = switch (code) {
             case 0 -> "foo";
-            case 1 -> "bar";
+            case 1 -> {
+              yield "bar";
+            }
             default -> throw new IllegalArgumentException("Invalid code: " + code);
         };
 
