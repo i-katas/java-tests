@@ -19,19 +19,19 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.hamcrest:hamcrest-library:2.1'
+    testCompile 'junit:junit:4.13'
+    testCompile 'org.hamcrest:hamcrest-library:2.2'
     testCompile 'org.mockito:mockito-core:2.27.0'
     testCompile "org.springframework:spring-context-support:$springVersion"
     testCompile "org.springframework:spring-test:$springVersion"
 }
 
 tasks.withType(JavaCompile).each {
-    it.options.compilerArgs.add('--enable-preview')
+    it.options.compilerArgs += ['--enable-preview']
 }
 
 test {
-    jvmArgs(['--enable-preview'])
+    jvmArgs(['--enable-preview', '--add-opens', 'jdk.jshell/jdk.jshell=ALL-UNNAMED'])
 }
 
 idea {
