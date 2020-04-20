@@ -6,15 +6,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.arrayContaining;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 
-/**
- * @author xiaoliang
- * @since 2019-08-25
- */
 public class TryWithResourcesBlockTest {
     private final InputStream in = mock(InputStream.class);
     private final OutputStream out = mock(OutputStream.class);

@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static java9.AccessibilityMatchers.isPrivate;
 import static java9.AccessibilityMatchers.isPublic;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author i-katas

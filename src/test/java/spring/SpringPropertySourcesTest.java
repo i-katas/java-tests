@@ -13,13 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.function.Function;
 
 import static java.util.Objects.requireNonNull;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
 
-/**
- * @author xiaoliang
- * @since 2019-08-23
- */
 @RunWith(SpringRunner.class)
 public class SpringPropertySourcesTest {
     @Autowired

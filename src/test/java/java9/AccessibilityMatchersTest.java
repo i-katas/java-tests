@@ -8,8 +8,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 
 import static java9.AccessibilityMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 
 /**
  * @author i-katas
@@ -66,7 +66,7 @@ public class AccessibilityMatchersTest {
         assertThat(description.toString(), descriptionMatcher);
     }
 
-    private Field field(String publicly) throws NoSuchFieldException {
-        return getClass().getDeclaredField(publicly);
+    private Field field(String name) throws NoSuchFieldException {
+        return getClass().getDeclaredField(name);
     }
 }
