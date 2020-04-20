@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static java.util.Objects.requireNonNull;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,17 +27,17 @@ public class SpringPropertySourcesTest {
         assertPropertySourceNamed("default", not(supportsUnicodeChars()));
     }
 
-    private void assertPropertySourceNamed(String name, Function<Matcher<? super Object>, Matcher<? super Object>> expectation) {
+    private void assertPropertySourceNamed(String name, Supplier<Matcher<? super String>> matcherSupplier) {
         org.springframework.core.env.PropertySource<?> propertySource = requireNonNull(currentEnvironment.getPropertySources().get(name), "No property source found: " + name);
-        assertThat(propertySource.getProperty("country"), expectation.apply(equalTo("中国")));
+        assertThat((String) propertySource.getProperty("country"), matcherSupplier.get());
     }
 
-    private static <T extends Matcher<? super String>> Function<T, T> supportsUnicodeChars() {
-        return Function.identity();
+    private static Supplier<Matcher<? super String>> supportsUnicodeChars() {
+        return () -> equalTo("中国");
     }
 
-    private static <T> Function<Matcher<? super T>, Matcher<? super T>> not(Function<Matcher<? super T>, Matcher<? super T>> matcher) {
-        return t -> Matchers.not(matcher.apply(t));
+    private static Supplier<Matcher<? super String>> not(Supplier<Matcher<? super String>> matcher) {
+        return () -> Matchers.not(matcher.get());
     }
 
     @Configuration
